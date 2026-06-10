@@ -26,6 +26,7 @@
             margin: 0 auto;
         }
 
+        /* Story Section */
         .story-section {
             padding: 100px 0;
         }
@@ -41,6 +42,16 @@
             border-radius: 20px;
             overflow: hidden;
             box-shadow: var(--shadow-glow);
+            position: relative;
+        }
+
+        .story-image::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: 2px solid var(--glass-border);
+            border-radius: 20px;
+            pointer-events: none;
         }
 
         .story-image img {
@@ -68,25 +79,90 @@
             color: var(--text-secondary);
             margin-bottom: 20px;
             font-size: 1.1rem;
+            line-height: 1.8;
         }
 
-        .stats {
-            padding: 60px 0;
+        /* Mission & Vision */
+        .mission-vision {
+            padding: 80px 0;
             background: var(--bg-card);
             border-top: 1px solid var(--glass-border);
             border-bottom: 1px solid var(--glass-border);
         }
 
+        .mv-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .mv-card {
+            background: var(--bg-dark);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            transition: transform 0.3s;
+        }
+
+        .mv-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-purple);
+        }
+
+        .mv-card i {
+            font-size: 3rem;
+            color: var(--accent-purple);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .mv-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .mv-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .stats::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+            z-index: -1;
+            opacity: 0.3;
+        }
+
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 30px;
             text-align: center;
         }
 
+        .stat-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 30px 20px;
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+        }
+
         .stat-item h3 {
-            font-size: 3rem;
-            color: var(--accent-purple);
+            font-size: 3.5rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
             font-family: var(--font-heading);
         }
@@ -95,14 +171,184 @@
             color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 2px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            font-weight: 600;
         }
 
-        @media (max-width: 768px) {
+        /* Timeline / History */
+        .timeline-section {
+            padding: 100px 0;
+            background: var(--bg-card);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--glass-border);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: var(--accent-cyan);
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 15px var(--accent-cyan);
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: var(--bg-dark);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .timeline-content h4 {
+            color: var(--accent-cyan);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .timeline-content p {
+            color: var(--text-secondary);
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 100px 0;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .team-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            overflow: hidden;
+            text-align: center;
+            padding-bottom: 25px;
+            transition: transform 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-image {
+            width: 100%;
+            height: 250px;
+            background: var(--bg-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--glass-border);
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .team-image i {
+            font-size: 5rem;
+            color: var(--glass-border);
+        }
+
+        .team-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .team-card p {
+            color: var(--accent-purple);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .team-social a {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+        }
+
+        .team-social a:hover {
+            color: var(--accent-cyan);
+        }
+
+        @media (max-width: 900px) {
             .story-content {
                 flex-direction: column;
             }
+            .mv-grid {
+                grid-template-columns: 1fr;
+            }
             .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .timeline::before {
+                left: 0;
+            }
+            .timeline-item {
+                flex-direction: column !important;
+                align-items: flex-start;
+            }
+            .timeline-dot {
+                left: 0;
+            }
+            .timeline-content {
+                width: 90%;
+                margin-left: 30px;
+            }
+            .team-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -134,10 +380,11 @@
     <header class="page-header">
         <div class="container animate-up">
             <h1>Our <span class="text-gradient">Story</span></h1>
-            <p>Engineered for Sound. Designed for You. Discover the passion behind every beat.</p>
+            <p>Engineered for Sound. Designed for You. Discover the passion, precision, and people behind every beat.</p>
         </div>
     </header>
 
+    <!-- Story Section -->
     <section class="story-section container">
         <div class="story-content">
             <div class="story-image animate-up">
@@ -145,26 +392,126 @@
             </div>
             <div class="story-text animate-up" style="animation-delay: 0.2s;">
                 <h2>A Symphony in the Making</h2>
-                <p>Founded in 2024 by a collective of audio engineers and designers, Aura Audio was born from a simple belief: everyone deserves to hear music exactly as the artist intended.</p>
-                <p>We grew tired of the compromise between aesthetics and audio quality in the market. Our mission became clear—create premium, high-fidelity audio equipment that looks as stunning as it sounds.</p>
-                <p>Today, our products are the culmination of years of research, countless prototypes, and an uncompromising dedication to acoustic perfection.</p>
+                <p>Founded in 2024 by a collective of audio engineers and designers, Aura Audio was born from a simple belief: everyone deserves to hear music exactly as the artist intended, without compromises.</p>
+                <p>We grew tired of the industry standard where consumers had to choose between aesthetics, comfort, and audio fidelity. Our mission became clear—create premium audio equipment that bridges the gap between studio-grade performance and everyday lifestyle wear.</p>
+                <p>Today, our products are the culmination of years of research, acoustic tuning, countless prototypes, and an uncompromising dedication to perfection. We don't just build earphones; we engineer experiences.</p>
             </div>
         </div>
     </section>
 
-    <section class="stats">
-        <div class="container stats-grid">
-            <div class="stat-item">
+    <!-- Mission & Vision -->
+    <section class="mission-vision">
+        <div class="container mv-grid">
+            <div class="mv-card animate-up">
+                <i class="ri-focus-3-line"></i>
+                <h3>Our Mission</h3>
+                <p>To democratize high-fidelity audio by blending cutting-edge acoustic engineering with accessible, ergonomic designs. We strive to create products that integrate seamlessly into our customers' lives, elevating every moment through superior sound.</p>
+            </div>
+            <div class="mv-card animate-up" style="animation-delay: 0.2s;">
+                <i class="ri-eye-2-line"></i>
+                <h3>Our Vision</h3>
+                <p>To be the global pioneer in lifestyle audio technology, recognized not only for our sonic excellence but for our commitment to sustainable manufacturing and continuous innovation in the wireless audio space.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats container">
+        <div class="stats-grid">
+            <div class="stat-item animate-up">
                 <h3>10K+</h3>
-                <p>Happy Customers</p>
+                <p>Happy Listeners</p>
             </div>
-            <div class="stat-item">
-                <h3>50+</h3>
-                <p>Products Launched</p>
+            <div class="stat-item animate-up" style="animation-delay: 0.1s;">
+                <h3>5</h3>
+                <p>Awards Won</p>
             </div>
-            <div class="stat-item">
-                <h3>4.9<i class="ri-star-fill" style="color: var(--gold); font-size: 2rem;"></i></h3>
+            <div class="stat-item animate-up" style="animation-delay: 0.2s;">
+                <h3>4.9<span style="font-size:1.5rem; color:var(--gold);">★</span></h3>
                 <p>Average Rating</p>
+            </div>
+            <div class="stat-item animate-up" style="animation-delay: 0.3s;">
+                <h3>24/7</h3>
+                <p>Global Support</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="timeline-section">
+        <div class="container">
+            <div class="section-title animate-up">
+                <h2>Our <span class="text-gradient">Journey</span></h2>
+                <p style="color: var(--text-secondary);">The milestones that shaped Aura Audio.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item animate-up">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>2024</h4>
+                        <h3>The Inception</h3>
+                        <p>Aura Audio is founded in a small garage in Silicon Valley by three acoustic engineers with a vision to change portable sound.</p>
+                    </div>
+                </div>
+                <div class="timeline-item animate-up">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>2025</h4>
+                        <h3>First Prototype</h3>
+                        <p>After 14 months of R&D, the first prototype of the 'Aura Pro' is developed, featuring our proprietary bass-reflex technology.</p>
+                    </div>
+                </div>
+                <div class="timeline-item animate-up">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>2026</h4>
+                        <h3>Global Launch</h3>
+                        <p>The flagship Aura collection launches globally, selling out the initial production run of 10,000 units in just 48 hours.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="team-section container">
+        <div class="section-title animate-up">
+            <h2>Meet The <span class="text-gradient">Founders</span></h2>
+            <p style="color: var(--text-secondary);">The visionary minds behind the sound.</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card animate-up">
+                <div class="team-image">
+                    <i class="ri-user-smile-line"></i>
+                </div>
+                <h3>Alex Mercer</h3>
+                <p>Chief Executive Officer</p>
+                <div class="team-social">
+                    <a href="#"><i class="ri-linkedin-fill"></i></a>
+                    <a href="#"><i class="ri-twitter-x-line"></i></a>
+                </div>
+            </div>
+            <div class="team-card animate-up" style="animation-delay: 0.2s;">
+                <div class="team-image">
+                    <i class="ri-user-star-line"></i>
+                </div>
+                <h3>Sarah Chen</h3>
+                <p>Head of Acoustics</p>
+                <div class="team-social">
+                    <a href="#"><i class="ri-linkedin-fill"></i></a>
+                    <a href="#"><i class="ri-twitter-x-line"></i></a>
+                </div>
+            </div>
+            <div class="team-card animate-up" style="animation-delay: 0.4s;">
+                <div class="team-image">
+                    <i class="ri-user-heart-line"></i>
+                </div>
+                <h3>Marcus Wright</h3>
+                <p>Lead Designer</p>
+                <div class="team-social">
+                    <a href="#"><i class="ri-linkedin-fill"></i></a>
+                    <a href="#"><i class="ri-dribbble-line"></i></a>
+                </div>
             </div>
         </div>
     </section>
@@ -185,17 +532,17 @@
                 <div class="footer-col">
                     <h3>Shop</h3>
                     <ul class="footer-links">
-                        <li><a href="#">True Wireless</a></li>
-                        <li><a href="#">Over-Ear</a></li>
-                        <li><a href="#">Sport Earbuds</a></li>
-                        <li><a href="#">Accessories</a></li>
+                        <li><a href="shop.html">True Wireless</a></li>
+                        <li><a href="shop.html">Over-Ear</a></li>
+                        <li><a href="shop.html">Sport Earbuds</a></li>
+                        <li><a href="shop.html">Accessories</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h3>Support</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">FAQs</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="contact.html">FAQs</a></li>
                         <li><a href="#">Shipping & Returns</a></li>
                         <li><a href="#">Warranty</a></li>
                     </ul>

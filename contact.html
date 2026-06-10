@@ -26,6 +26,7 @@
             margin: 0 auto;
         }
 
+        /* Contact Main */
         .contact-section {
             padding: 80px 0;
         }
@@ -48,6 +49,12 @@
             border-radius: var(--border-radius);
             border: 1px solid var(--glass-border);
             text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-cyan);
         }
 
         .info-card i {
@@ -112,25 +119,127 @@
             min-height: 150px;
         }
 
-        .map-section {
-            padding: 0 0 100px;
-        }
-
-        .map-container {
-            width: 100%;
-            height: 400px;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            border: 1px solid var(--glass-border);
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 0;
             background: var(--bg-card);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
         }
 
-        @media (max-width: 768px) {
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--bg-dark);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .faq-question i {
+            color: var(--accent-cyan);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 25px 20px;
+            max-height: 300px; /* arbitrary max height for animation */
+        }
+
+        /* Global Offices */
+        .offices-section {
+            padding: 100px 0;
+        }
+
+        .offices-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .office-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .office-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--accent-gradient);
+        }
+
+        .office-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .office-card p {
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .office-card p i {
+            color: var(--accent-purple);
+            margin-top: 3px;
+        }
+
+        @media (max-width: 900px) {
             .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .offices-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -162,7 +271,7 @@
     <header class="page-header">
         <div class="container animate-up">
             <h1>Get In <span class="text-gradient">Touch</span></h1>
-            <p>Have a question or need assistance? Our team is here to help you find the perfect sound.</p>
+            <p>Have a question or need assistance? Our global team is here to help you find the perfect sound.</p>
         </div>
     </header>
 
@@ -170,55 +279,128 @@
         <div class="contact-grid">
             <div class="contact-info animate-up">
                 <div class="info-card">
-                    <i class="ri-map-pin-line"></i>
-                    <h3>Our Headquarters</h3>
-                    <p>123 Audio Lane, Tech Park<br>Silicon Valley, CA 94025</p>
+                    <i class="ri-customer-service-2-line"></i>
+                    <h3>Support Team</h3>
+                    <p>+1 (800) 123-4567<br>support@auraaudio.com</p>
                 </div>
                 <div class="info-card">
-                    <i class="ri-phone-line"></i>
-                    <h3>Call Us</h3>
-                    <p>+1 (555) 123-4567<br>Mon - Fri: 9AM - 6PM EST</p>
+                    <i class="ri-briefcase-4-line"></i>
+                    <h3>Sales & Partnerships</h3>
+                    <p>+1 (800) 987-6543<br>sales@auraaudio.com</p>
                 </div>
                 <div class="info-card">
-                    <i class="ri-mail-send-line"></i>
-                    <h3>Email Us</h3>
-                    <p>support@auraaudio.com<br>info@auraaudio.com</p>
+                    <i class="ri-time-line"></i>
+                    <h3>Operating Hours</h3>
+                    <p>Monday - Friday<br>9:00 AM - 8:00 PM EST</p>
                 </div>
             </div>
             
             <div class="contact-form animate-up" style="animation-delay: 0.2s;">
-                <h2>Send a Message</h2>
-                <form onsubmit="event.preventDefault(); alert('Message sent successfully! (Demo)');">
+                <h2>Send us a Message</h2>
+                <form id="main-contact-form" onsubmit="event.preventDefault(); showToast('Message Sent', 'Thank you for reaching out! We will get back to you shortly.'); this.reset();">
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                         <div class="form-group">
-                            <label for="name">Your Name</label>
+                            <label for="name">Full Name</label>
                             <input type="text" id="name" class="form-control" placeholder="John Doe" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Your Email</label>
+                            <label for="email">Email Address</label>
                             <input type="email" id="email" class="form-control" placeholder="john@example.com" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" class="form-control" placeholder="How can we help?" required>
+                        <label for="subject">Inquiry Type</label>
+                        <select id="subject" class="form-control" required style="appearance: none;">
+                            <option value="">Select an option...</option>
+                            <option value="support">Technical Support</option>
+                            <option value="sales">Sales & Bulk Orders</option>
+                            <option value="press">Press & Media</option>
+                            <option value="other">Other</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" class="form-control" placeholder="Write your message here..." required></textarea>
+                        <label for="message">Your Message</label>
+                        <textarea id="message" class="form-control" placeholder="How can we help you today?" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.1rem; padding: 15px;">Submit Request</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- Map Placeholder -->
-    <section class="map-section container animate-up">
-        <div class="map-container">
-            <div style="text-align: center;">
-                <i class="ri-map-2-line" style="font-size: 3rem; color: var(--accent-purple); margin-bottom: 10px; display: block;"></i>
-                <p>Interactive Map Integration Here</p>
+    <!-- Global Offices -->
+    <section class="offices-section container">
+        <div class="section-title animate-up">
+            <h2>Our Global <span class="text-gradient">Offices</span></h2>
+            <p style="color: var(--text-secondary);">Visit us at one of our flagship locations.</p>
+        </div>
+        <div class="offices-grid">
+            <div class="office-card animate-up">
+                <h3>Silicon Valley (HQ)</h3>
+                <p><i class="ri-map-pin-line"></i> 123 Audio Lane, Tech Park, CA 94025, USA</p>
+                <p><i class="ri-phone-line"></i> +1 (555) 123-4567</p>
+            </div>
+            <div class="office-card animate-up" style="animation-delay: 0.2s;">
+                <h3>London</h3>
+                <p><i class="ri-map-pin-line"></i> 45 Soundwave Street, Soho, London W1D 4QH, UK</p>
+                <p><i class="ri-phone-line"></i> +44 20 7123 4567</p>
+            </div>
+            <div class="office-card animate-up" style="animation-delay: 0.4s;">
+                <h3>Tokyo</h3>
+                <p><i class="ri-map-pin-line"></i> 8-1 Shibuya, Shibuya City, Tokyo 150-0002, Japan</p>
+                <p><i class="ri-phone-line"></i> +81 3-1234-5678</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title animate-up">
+                <h2>Frequently Asked <span class="text-gradient">Questions</span></h2>
+                <p style="color: var(--text-secondary);">Find quick answers to common questions below.</p>
+            </div>
+            
+            <div class="faq-container animate-up" style="animation-delay: 0.2s;">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do you offer international shipping?
+                        <i class="ri-arrow-down-s-line"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we ship globally! International shipping usually takes 5-10 business days depending on your location. Customs fees may apply depending on your country's regulations.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What is your warranty policy?
+                        <i class="ri-arrow-down-s-line"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>All Aura Audio products come with a standard 2-year limited warranty covering any manufacturing defects. You can extend this to 3 years by registering your product on our website within 30 days of purchase.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How long does the battery last on the Aura Pro?
+                        <i class="ri-arrow-down-s-line"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The Aura Pro features an industry-leading 40-hour battery life with ANC off, and up to 30 hours with ANC turned on. A quick 15-minute charge provides 5 hours of playback time.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What is your return policy?
+                        <i class="ri-arrow-down-s-line"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer a 30-day risk-free listening guarantee. If you're not completely satisfied with your purchase, you can return it within 30 days for a full refund. Items must be in original condition with all accessories included.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -239,17 +421,17 @@
                 <div class="footer-col">
                     <h3>Shop</h3>
                     <ul class="footer-links">
-                        <li><a href="#">True Wireless</a></li>
-                        <li><a href="#">Over-Ear</a></li>
-                        <li><a href="#">Sport Earbuds</a></li>
-                        <li><a href="#">Accessories</a></li>
+                        <li><a href="shop.html">True Wireless</a></li>
+                        <li><a href="shop.html">Over-Ear</a></li>
+                        <li><a href="shop.html">Sport Earbuds</a></li>
+                        <li><a href="shop.html">Accessories</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h3>Support</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">FAQs</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="contact.html">FAQs</a></li>
                         <li><a href="#">Shipping & Returns</a></li>
                         <li><a href="#">Warranty</a></li>
                     </ul>
@@ -271,6 +453,7 @@
 
     <script src="js/cart.js"></script>
     <script>
+        // Navbar scroll effect
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
@@ -280,6 +463,23 @@
                 navbar.style.background = 'rgba(18, 18, 26, 0.7)';
                 navbar.style.boxShadow = 'none';
             }
+        });
+
+        // FAQ Accordion Logic
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Close all others
+                faqItems.forEach(i => i.classList.remove('active'));
+                
+                // Toggle current
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
         });
     </script>
 </body>
