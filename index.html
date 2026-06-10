@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Audio | Premium Earphones</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        /* Home Specific Styles */
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            z-index: -2;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 15, 0.7); /* Dark overlay to make text readable */
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        .features {
+            padding: 100px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            padding: 40px 30px;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--glass-border);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-glow);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .feature-card i {
+            font-size: 3rem;
+            color: var(--accent-cyan);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .showcase {
+            padding: 100px 0;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, #0d0d14 100%);
+        }
+
+        .showcase-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .showcase-text {
+            flex: 1;
+        }
+
+        .showcase-text h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .showcase-text p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .showcase-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .showcase-image img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .showcase-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: 20px;
+            bottom: 20px;
+            border: 2px solid var(--accent-purple);
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .showcase-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo text-gradient">AURA.</a>
+            <ul class="nav-links">
+                <li><a href="index.html" style="color: var(--accent-cyan);">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <i class="ri-search-line"></i>
+                <i class="ri-shopping-cart-2-line"></i>
+                <i class="ri-menu-line" style="display: none;"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Background Video -->
+    <section class="hero">
+        <video class="hero-video" autoplay loop muted playsinline>
+            <source src="vedio/download.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content animate-up">
+            <h1>Experience Sound in its <span class="text-gradient">Purest Form</span></h1>
+            <p>Immerse yourself in studio-quality audio with our premium range of wireless earphones. Designed for audiophiles, crafted for comfort.</p>
+            <a href="shop.html" class="btn btn-primary">Shop Collection</a>
+            <a href="#features" class="btn btn-outline" style="margin-left: 15px;">Discover More</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features container">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h2 style="font-size: 2.5rem;">Why Choose <span class="text-gradient">Aura</span></h2>
+            <p style="color: var(--text-secondary); margin-top: 10px;">Engineering excellence meets acoustic perfection.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="ri-sound-module-line"></i>
+                <h3>Hi-Res Audio</h3>
+                <p>Custom-tuned drivers deliver crystal clear highs and deep, punchy bass for an immersive experience.</p>
+            </div>
+            <div class="feature-card">
+                <i class="ri-battery-2-charge-line"></i>
+                <h3>40H Battery Life</h3>
+                <p>Listen all day and night with industry-leading battery performance and fast charging capabilities.</p>
+            </div>
+            <div class="feature-card">
+                <i class="ri-volume-mute-line"></i>
+                <h3>Active Noise Cancelling</h3>
+                <p>Block out the world with advanced hybrid ANC technology that adapts to your environment.</p>
+            </div>
+            <div class="feature-card">
+                <i class="ri-bluetooth-connect-line"></i>
+                <h3>Seamless Connectivity</h3>
+                <p>Bluetooth 5.3 ensures a stable, lag-free connection with multi-device pairing support.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase Section -->
+    <section class="showcase">
+        <div class="container showcase-content">
+            <div class="showcase-text">
+                <h2>Designed for the <span class="text-gradient">Modern Audiophile</span></h2>
+                <p>Our flagship model combines sleek aesthetics with uncompromising sound quality. Crafted from premium materials including aerospace-grade aluminum and memory foam, they look as good as they sound.</p>
+                <ul style="margin-bottom: 30px; color: var(--text-secondary);">
+                    <li style="margin-bottom: 10px;"><i class="ri-check-line" style="color: var(--accent-cyan); margin-right: 10px;"></i> Touch controls for easy navigation</li>
+                    <li style="margin-bottom: 10px;"><i class="ri-check-line" style="color: var(--accent-cyan); margin-right: 10px;"></i> Voice assistant compatible</li>
+                    <li style="margin-bottom: 10px;"><i class="ri-check-line" style="color: var(--accent-cyan); margin-right: 10px;"></i> Water and sweat resistant (IPX4)</li>
+                </ul>
+                <a href="product.html" class="btn btn-primary">Explore Features</a>
+            </div>
+            <div class="showcase-image">
+                <img src="images/hero_earphone.png" alt="Premium Earphones">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3 class="text-gradient" style="font-size: 1.5rem;">AURA.</h3>
+                    <p>Redefining your listening experience with premium, high-fidelity audio equipment.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="ri-instagram-line"></i></a>
+                        <a href="#"><i class="ri-twitter-x-line"></i></a>
+                        <a href="#"><i class="ri-facebook-circle-fill"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Shop</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">True Wireless</a></li>
+                        <li><a href="#">Over-Ear</a></li>
+                        <li><a href="#">Sport Earbuds</a></li>
+                        <li><a href="#">Accessories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Warranty</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>
+                    <div style="margin-top: 15px; display: flex;">
+                        <input type="email" placeholder="Enter your email" style="padding: 10px; border: 1px solid var(--glass-border); background: var(--bg-dark); color: white; border-radius: 5px 0 0 5px; outline: none; width: 100%;">
+                        <button style="padding: 10px 15px; background: var(--accent-cyan); border: none; border-radius: 0 5px 5px 0; cursor: pointer; color: var(--bg-dark); font-weight: bold;">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Aura Audio. All Rights Reserved. Demo purposes only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple script for navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(10, 10, 15, 0.95)';
+                navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.5)';
+            } else {
+                navbar.style.background = 'rgba(18, 18, 26, 0.7)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
