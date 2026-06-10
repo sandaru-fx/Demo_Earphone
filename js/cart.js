@@ -3,6 +3,17 @@ let cart = JSON.parse(localStorage.getItem('aura_cart')) || [];
 
 // Inject toast container and live chat widget into the body if they don't exist
 document.addEventListener('DOMContentLoaded', () => {
+    // Mobile menu toggle logic
+    const menuIcon = document.querySelector('.ri-menu-line');
+    const navLinks = document.querySelector('.nav-links');
+    if(menuIcon && navLinks) {
+        menuIcon.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuIcon.classList.toggle('ri-close-line');
+            menuIcon.classList.toggle('ri-menu-line');
+        });
+    }
+
     if (!document.getElementById('toast-container')) {
         const toastContainer = document.createElement('div');
         toastContainer.id = 'toast-container';
