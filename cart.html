@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart | Aura Audio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        .page-header {
+            padding: 150px 0 80px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-dark) 100%);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cart-container {
+            padding: 60px 0;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 50px;
+        }
+
+        /* Cart Items */
+        .cart-items-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .cart-item {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            position: relative;
+        }
+
+        .item-image {
+            width: 120px;
+            height: 120px;
+            background: var(--bg-dark);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .item-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .item-details {
+            flex: 1;
+        }
+
+        .item-category {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .item-name {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .item-color {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .color-dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border: 1px solid var(--glass-border);
+        }
+
+        .item-price-block {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .item-price {
+            font-size: 1.2rem;
+            color: var(--accent-cyan);
+            font-weight: bold;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            background: var(--bg-dark);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2px 10px;
+        }
+
+        .quantity-btn {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .quantity-input {
+            width: 30px;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            text-align: center;
+            font-weight: bold;
+            outline: none;
+        }
+
+        .remove-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .remove-btn:hover {
+            color: #ff4d4d;
+        }
+
+        /* Order Summary */
+        .order-summary {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .order-summary h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+        }
+
+        .summary-row.total {
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            font-weight: bold;
+            padding-top: 15px;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 15px;
+            margin-bottom: 30px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        /* Empty Cart */
+        .empty-cart {
+            text-align: center;
+            padding: 80px 20px;
+            grid-column: 1 / -1;
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--glass-border);
+        }
+
+        .empty-cart i {
+            font-size: 5rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .empty-cart h2 {
+            margin-bottom: 15px;
+        }
+
+        .empty-cart p {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 900px) {
+            .cart-container {
+                grid-template-columns: 1fr;
+            }
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .item-image {
+                width: 100%;
+                height: 200px;
+            }
+            .remove-btn {
+                top: 10px;
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo text-gradient">AURA.</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <i class="ri-search-line"></i>
+                <a href="cart.html" style="position:relative; color: var(--accent-cyan);">
+                    <i class="ri-shopping-cart-2-line"></i>
+                    <span class="cart-count" style="position:absolute; top:-8px; right:-8px; background:var(--accent-purple); color:white; font-size:10px; padding:2px 5px; border-radius:50%;">0</span>
+                </a>
+                <i class="ri-menu-line" style="display: none;"></i>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container animate-up">
+            <h1>Your <span class="text-gradient">Cart</span></h1>
+        </div>
+    </header>
+
+    <section class="container cart-container" id="cart-wrapper">
+        <!-- Rendered by JS -->
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3 class="text-gradient" style="font-size: 1.5rem;">AURA.</h3>
+                    <p>Redefining your listening experience with premium, high-fidelity audio equipment.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Shop</h3>
+                    <ul class="footer-links">
+                        <li><a href="shop.html">True Wireless</a></li>
+                        <li><a href="shop.html">Over-Ear</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Aura Audio. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCartItems();
+        });
+
+        function renderCartItems() {
+            const wrapper = document.getElementById('cart-wrapper');
+            
+            if (cart.length === 0) {
+                wrapper.innerHTML = `
+                    <div class="empty-cart animate-up">
+                        <i class="ri-shopping-cart-line"></i>
+                        <h2>Your cart is empty</h2>
+                        <p>Looks like you haven't added any products to your cart yet.</p>
+                        <a href="shop.html" class="btn btn-primary">Continue Shopping</a>
+                    </div>
+                `;
+                return;
+            }
+
+            let itemsHtml = '<div class="cart-items-list">';
+            
+            cart.forEach((item, index) => {
+                const colorHtml = item.color ? `
+                    <div class="item-color">
+                        Color: <div class="color-dot" style="background-color: ${item.color};"></div>
+                    </div>
+                ` : '';
+
+                itemsHtml += `
+                    <div class="cart-item animate-up" style="animation-delay: ${index * 0.1}s">
+                        <button class="remove-btn" onclick="removeFromCart(${index})"><i class="ri-close-line"></i></button>
+                        <div class="item-image">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-category">${item.category.replace('-', ' ')}</div>
+                            <div class="item-name">${item.name}</div>
+                            ${colorHtml}
+                            <div class="item-price-block">
+                                <div class="item-price">$${item.price.toFixed(2)}</div>
+                                <div class="quantity-selector">
+                                    <button class="quantity-btn" onclick="updateQuantity(${index}, ${item.quantity - 1})">-</button>
+                                    <input type="number" class="quantity-input" value="${item.quantity}" readonly>
+                                    <button class="quantity-btn" onclick="updateQuantity(${index}, ${item.quantity + 1})">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            itemsHtml += '</div>';
+
+            const subtotal = getCartTotal();
+            const tax = subtotal * 0.08; // 8% tax
+            const shipping = subtotal > 0 ? 15.00 : 0; // Flat $15 shipping
+            const total = subtotal + tax + shipping;
+
+            const summaryHtml = `
+                <div class="order-summary animate-up" style="animation-delay: 0.2s">
+                    <h2>Order Summary</h2>
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span>$${subtotal.toFixed(2)}</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping</span>
+                        <span>$${shipping.toFixed(2)}</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Tax (8%)</span>
+                        <span>$${tax.toFixed(2)}</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span class="text-gradient">$${total.toFixed(2)}</span>
+                    </div>
+                    <button class="btn btn-primary checkout-btn" onclick="alert('Proceeding to checkout! (Demo ends here)')">Proceed to Checkout</button>
+                </div>
+            `;
+
+            wrapper.innerHTML = itemsHtml + summaryHtml;
+        }
+
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(10, 10, 15, 0.95)';
+                navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.5)';
+            } else {
+                navbar.style.background = 'rgba(18, 18, 26, 0.7)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

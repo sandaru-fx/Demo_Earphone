@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <input type="number" class="quantity-input" id="qty-input" value="1" min="1" max="10">
                         <button class="quantity-btn" id="qty-plus">+</button>
                     </div>
-                    <button class="btn btn-primary add-to-cart-btn" onclick="alert('Added to Cart! (Demo)')">
+                    <button class="btn btn-primary add-to-cart-btn" id="add-to-cart-btn">
                         <i class="ri-shopping-cart-2-line" style="margin-right: 10px;"></i> Add to Cart
                     </button>
                 </div>
@@ -156,6 +156,18 @@ document.addEventListener('DOMContentLoaded', () => {
         qtyPlus.addEventListener('click', () => {
             let val = parseInt(qtyInput.value);
             if (val < 10) qtyInput.value = val + 1;
+        });
+
+        // Add to Cart logic
+        const addToCartBtn = document.getElementById('add-to-cart-btn');
+        addToCartBtn.addEventListener('click', () => {
+            const qty = parseInt(qtyInput.value) || 1;
+            const activeColorSwatch = document.querySelector('.color-swatch.active');
+            const color = activeColorSwatch ? activeColorSwatch.dataset.color : null;
+            
+            if (typeof addToCart === 'function') {
+                addToCart(product, qty, color);
+            }
         });
     }
 });
