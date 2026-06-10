@@ -233,7 +233,7 @@ footer {
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(8px); /* Reduced from 20px — subtle lift */
   }
   to {
     opacity: 1;
@@ -242,7 +242,7 @@ footer {
 }
 
 .animate-up {
-  animation: fadeInUp 0.8s ease forwards;
+  animation: fadeInUp 1s ease forwards; /* Slightly slower for premium feel */
 }
 
 /* Responsive */
