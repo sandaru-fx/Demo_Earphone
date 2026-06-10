@@ -68,12 +68,43 @@ document.addEventListener('DOMContentLoaded', () => {
     function filterAndSortProducts() {
         let filtered = [...products];
 
-        // Filter by category
+        // 1. Filter by Search Query
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchQuery = urlParams.get('search');
+        if (searchQuery) {
+            const q = searchQuery.toLowerCase();
+            filtered = filtered.filter(p => 
+                p.name.toLowerCase().includes(q) || 
+                p.category.toLowerCase().includes(q) ||
+                (p.description && p.description.toLowerCase().includes(q))
+            );
+            
+            // Update Page Header to show search term
+            const headerObj = document.querySelector('.page-header h1');
+            if(headerObj && !headerObj.dataset.searchUpdated) {
+                headerObj.innerHTML = `Search Results for <span class="text-gradient">"${searchQuery}"</span>`;
+                headerObj.dataset.searchUpdated = "true";
+            }
+        }
+
+        // 2. Filter by category
         if (currentCategory !== 'all') {
             filtered = filtered.filter(p => p.category === currentCategory);
         }
 
-        // Sort
+        // 3. Filter by Price Range
+        const priceCheckboxes = document.querySelectorAll('.price-checkbox:checked');
+        if (priceCheckboxes.length > 0) {
+            const activePriceFilters = Array.from(priceCheckboxes).map(cb => cb.value);
+            filtered = filtered.filter(p => {
+                if (activePriceFilters.includes('under-100') && p.price < 100) return true;
+                if (activePriceFilters.includes('100-200') && p.price >= 100 && p.price <= 200) return true;
+                if (activePriceFilters.includes('over-200') && p.price > 200) return true;
+                return false;
+            });
+        }
+
+        // 4. Sort
         switch (currentSort) {
             case 'price-low':
                 filtered.sort((a, b) => a.price - b.price);
@@ -109,6 +140,12 @@ document.addEventListener('DOMContentLoaded', () => {
         filterAndSortProducts();
     });
 
+    // Event Listeners for Price Checkboxes
+    const priceCheckboxes = document.querySelectorAll('.price-checkbox');
+    priceCheckboxes.forEach(cb => {
+        cb.addEventListener('change', filterAndSortProducts);
+    });
+
     // Initial render
-    renderProducts(products);
+    filterAndSortProducts();
 });

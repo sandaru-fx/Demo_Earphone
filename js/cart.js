@@ -45,8 +45,45 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(chatWidget);
     }
 
+    // Inject Global Search Modal
+    if (!document.getElementById('search-overlay')) {
+        const searchOverlay = document.createElement('div');
+        searchOverlay.id = 'search-overlay';
+        searchOverlay.innerHTML = `
+            <div class="search-modal">
+                <input type="text" id="global-search-input" placeholder="Search products..." onkeypress="if(event.key === 'Enter') executeSearch()">
+                <button onclick="executeSearch()"><i class="ri-search-line"></i></button>
+                <button class="close-search" onclick="toggleSearch()"><i class="ri-close-line"></i></button>
+            </div>
+        `;
+        document.body.appendChild(searchOverlay);
+    }
+
+    // Bind search icon clicks
+    document.querySelectorAll('.ri-search-line').forEach(icon => {
+        if(icon.parentElement.classList.contains('nav-icons')) {
+            icon.addEventListener('click', toggleSearch);
+        }
+    });
+
     updateCartBadge();
 });
+
+// Search Logic
+function toggleSearch() {
+    const overlay = document.getElementById('search-overlay');
+    overlay.classList.toggle('active');
+    if (overlay.classList.contains('active')) {
+        setTimeout(() => document.getElementById('global-search-input').focus(), 100);
+    }
+}
+
+function executeSearch() {
+    const q = document.getElementById('global-search-input').value.trim();
+    if (q) {
+        window.location.href = 'shop.html?search=' + encodeURIComponent(q);
+    }
+}
 
 // Live Chat Logic
 function toggleChat() {
