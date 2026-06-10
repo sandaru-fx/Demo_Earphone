@@ -1,15 +1,73 @@
 // Cart state management using localStorage
 let cart = JSON.parse(localStorage.getItem('aura_cart')) || [];
 
-// Inject toast container into the body if it doesn't exist
+// Inject toast container and live chat widget into the body if they don't exist
 document.addEventListener('DOMContentLoaded', () => {
     if (!document.getElementById('toast-container')) {
         const toastContainer = document.createElement('div');
         toastContainer.id = 'toast-container';
         document.body.appendChild(toastContainer);
     }
+    
+    // Inject Live Chat Widget
+    if (!document.getElementById('live-chat-widget')) {
+        const chatWidget = document.createElement('div');
+        chatWidget.id = 'live-chat-widget';
+        chatWidget.innerHTML = `
+            <div class="chat-window" id="chat-window">
+                <div class="chat-header">
+                    <h3><i class="ri-customer-service-2-fill"></i> Aura Support</h3>
+                    <button class="chat-close" onclick="toggleChat()"><i class="ri-close-line"></i></button>
+                </div>
+                <div class="chat-body" id="chat-body">
+                    <div class="chat-msg bot">Hi there! 👋 How can we help you today?</div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="chat-input" placeholder="Type a message..." onkeypress="if(event.key === 'Enter') sendChatMessage()">
+                    <button onclick="sendChatMessage()"><i class="ri-send-plane-fill"></i></button>
+                </div>
+            </div>
+            <button class="chat-toggle-btn" onclick="toggleChat()">
+                <i class="ri-chat-3-line"></i>
+            </button>
+        `;
+        document.body.appendChild(chatWidget);
+    }
+
     updateCartBadge();
 });
+
+// Live Chat Logic
+function toggleChat() {
+    const chatWindow = document.getElementById('chat-window');
+    chatWindow.classList.toggle('open');
+}
+
+function sendChatMessage() {
+    const input = document.getElementById('chat-input');
+    const msg = input.value.trim();
+    if (msg) {
+        const chatBody = document.getElementById('chat-body');
+        
+        // Add User Message
+        const userMsg = document.createElement('div');
+        userMsg.className = 'chat-msg user';
+        userMsg.textContent = msg;
+        chatBody.appendChild(userMsg);
+        
+        input.value = '';
+        chatBody.scrollTop = chatBody.scrollHeight;
+        
+        // Simulate Bot Reply
+        setTimeout(() => {
+            const botMsg = document.createElement('div');
+            botMsg.className = 'chat-msg bot';
+            botMsg.textContent = "Thanks for your message! One of our audio experts will be with you shortly. (Demo)";
+            chatBody.appendChild(botMsg);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }, 1000);
+    }
+}
 
 function saveCart() {
     localStorage.setItem('aura_cart', JSON.stringify(cart));
