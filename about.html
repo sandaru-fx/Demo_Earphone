@@ -254,74 +254,62 @@
             color: var(--text-secondary);
         }
 
-        /* Team Section */
-        .team-section {
-            padding: 100px 0;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-        }
-
-        .team-card {
-            background: var(--bg-card);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            overflow: hidden;
-            text-align: center;
-            padding-bottom: 25px;
-            transition: transform 0.3s;
-        }
-
-        .team-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .team-image {
+        /* Studio Banner Section */
+        .studio-banner {
+            position: relative;
             width: 100%;
-            height: 250px;
-            background: var(--bg-dark);
+            height: 550px;
+            overflow: hidden;
+        }
+
+        .studio-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.8s ease;
+        }
+
+        .studio-banner:hover img {
+            transform: scale(1.03);
+        }
+
+        .studio-banner-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(10,10,15,0.85) 40%, transparent 100%);
             display: flex;
             align-items: center;
-            justify-content: center;
-            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .studio-banner-text {
+            padding: 0 80px;
+            max-width: 600px;
+        }
+
+        .studio-banner-text h2 {
+            font-size: 3rem;
+            line-height: 1.2;
             margin-bottom: 20px;
-            position: relative;
-        }
-        
-        .team-image i {
-            font-size: 5rem;
-            color: var(--glass-border);
         }
 
-        .team-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 5px;
-        }
-
-        .team-card p {
-            color: var(--accent-purple);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-        }
-
-        .team-social {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .team-social a {
+        .studio-banner-text p {
             color: var(--text-secondary);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.7;
         }
 
-        .team-social a:hover {
-            color: var(--accent-cyan);
+        @media (max-width: 768px) {
+            .studio-banner {
+                height: 400px;
+            }
+            .studio-banner-text {
+                padding: 0 30px;
+            }
+            .studio-banner-text h2 {
+                font-size: 2rem;
+            }
         }
 
         @media (max-width: 900px) {
@@ -473,45 +461,14 @@
         </div>
     </section>
 
-    <!-- Team -->
-    <section class="team-section container">
-        <div class="section-title animate-up">
-            <h2>Meet The <span class="text-gradient">Founders</span></h2>
-            <p style="color: var(--text-secondary);">The visionary minds behind the sound.</p>
-        </div>
-        <div class="team-grid">
-            <div class="team-card animate-up">
-                <div class="team-image">
-                    <i class="ri-user-smile-line"></i>
-                </div>
-                <h3>Alex Mercer</h3>
-                <p>Chief Executive Officer</p>
-                <div class="team-social">
-                    <a href="#"><i class="ri-linkedin-fill"></i></a>
-                    <a href="#"><i class="ri-twitter-x-line"></i></a>
-                </div>
-            </div>
-            <div class="team-card animate-up" style="animation-delay: 0.2s;">
-                <div class="team-image">
-                    <i class="ri-user-star-line"></i>
-                </div>
-                <h3>Sarah Chen</h3>
-                <p>Head of Acoustics</p>
-                <div class="team-social">
-                    <a href="#"><i class="ri-linkedin-fill"></i></a>
-                    <a href="#"><i class="ri-twitter-x-line"></i></a>
-                </div>
-            </div>
-            <div class="team-card animate-up" style="animation-delay: 0.4s;">
-                <div class="team-image">
-                    <i class="ri-user-heart-line"></i>
-                </div>
-                <h3>Marcus Wright</h3>
-                <p>Lead Designer</p>
-                <div class="team-social">
-                    <a href="#"><i class="ri-linkedin-fill"></i></a>
-                    <a href="#"><i class="ri-dribbble-line"></i></a>
-                </div>
+    <!-- Studio Banner (replaces Team section) -->
+    <section class="studio-banner animate-up">
+        <img src="images/about_banner.png" alt="Aura Audio Studio">
+        <div class="studio-banner-overlay">
+            <div class="studio-banner-text">
+                <h2>Where Sound Becomes <span class="text-gradient">Art</span></h2>
+                <p>Our world-class studio is where every product is born — tested, tuned, and perfected by a team obsessed with sonic excellence. Every driver, every frequency, every detail matters.</p>
+                <a href="shop.html" class="btn btn-primary">Explore Our Products</a>
             </div>
         </div>
     </section>
