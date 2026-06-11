@@ -1,5 +1,5 @@
 // Cart state management using localStorage
-let cart = JSON.parse(localStorage.getItem('aura_cart')) || [];
+let cart = JSON.parse(localStorage.getItem('skara_cart')) || [];
 
 // Inject toast container and live chat widget into the body if they don't exist
 document.addEventListener('DOMContentLoaded', () => {
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         chatWidget.innerHTML = `
             <div class="chat-window" id="chat-window">
                 <div class="chat-header">
-                    <h3><i class="ri-customer-service-2-fill"></i> Aura Support</h3>
+                    <h3><i class="ri-customer-service-2-fill"></i> Skara Support</h3>
                     <button class="chat-close" onclick="toggleChat()"><i class="ri-close-line"></i></button>
                 </div>
                 <div class="chat-body" id="chat-body">
@@ -118,7 +118,7 @@ function sendChatMessage() {
 }
 
 function saveCart() {
-    localStorage.setItem('aura_cart', JSON.stringify(cart));
+    localStorage.setItem('skara_cart', JSON.stringify(cart));
     updateCartBadge();
 }
 
