@@ -19,7 +19,8 @@
             text-align: center;
         }
 
-        .hero-video {
+        .hero-video,
+        .hero-bg {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -27,7 +28,6 @@
             min-height: 100%;
             width: auto;
             height: auto;
-            /* Scale up slightly and shift down so earphones aren't hidden by navbar */
             transform: translate(-50%, -45%) scale(1.15);
             z-index: -2;
             object-fit: cover;
@@ -154,7 +154,148 @@
             z-index: -1;
         }
 
+        .featured {
+            padding: 100px 0;
+            background: linear-gradient(180deg, #0d0d14 0%, var(--bg-dark) 100%);
+        }
+
+        .featured-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .featured-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .featured-header p {
+            color: var(--text-secondary);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--glass-border);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .product-image-container {
+            height: 220px;
+            overflow: hidden;
+            background: var(--bg-dark);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image-container img {
+            width: 80%;
+            height: auto;
+            object-fit: contain;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-image-container img {
+            transform: scale(1.08);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-category {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            color: var(--accent-cyan);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .product-price .original-price {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-decoration: line-through;
+            font-weight: normal;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .product-rating i {
+            color: var(--gold);
+        }
+
+        .quick-view-btn {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(50px);
+            opacity: 0;
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            transition: all 0.3s;
+            width: 80%;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .product-card:hover .quick-view-btn {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        @media (max-width: 1100px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
             .hero-content h1 {
                 font-size: 2.5rem;
             }
@@ -201,7 +342,7 @@
 
     <!-- Hero Section with Background Video -->
     <section class="hero">
-        <video class="hero-video" autoplay loop muted playsinline>
+        <video class="hero-video" autoplay loop muted playsinline poster="images/home_hero_bg.png">
             <source src="vedio/download.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
@@ -245,6 +386,20 @@
         </div>
     </section>
 
+    <!-- Featured Products -->
+    <section class="featured">
+        <div class="container">
+            <div class="featured-header">
+                <h2>Featured <span class="text-gradient">Collection</span></h2>
+                <p>Our most popular picks, loved by audiophiles worldwide.</p>
+            </div>
+            <div class="product-grid" id="featured-products"></div>
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="shop.html" class="btn btn-outline">View All Products</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Showcase Section -->
     <section class="showcase">
         <div class="container showcase-content">
@@ -256,7 +411,7 @@
                     <li style="margin-bottom: 10px;"><i class="ri-check-line" style="color: var(--accent-cyan); margin-right: 10px;"></i> Voice assistant compatible</li>
                     <li style="margin-bottom: 10px;"><i class="ri-check-line" style="color: var(--accent-cyan); margin-right: 10px;"></i> Water and sweat resistant (IPX4)</li>
                 </ul>
-                <a href="product.html" class="btn btn-primary">Explore Features</a>
+                <a href="product.html?id=p1" class="btn btn-primary">Explore Features</a>
             </div>
             <div class="showcase-image">
                 <img src="images/hero_earphone.png" alt="Premium Earphones">
@@ -311,18 +466,7 @@
     </footer>
 
     <script src="js/cart.js"></script>
-    <script>
-        // Simple script for navbar background on scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(10, 10, 15, 0.95)';
-                navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.5)';
-            } else {
-                navbar.style.background = 'rgba(18, 18, 26, 0.7)';
-                navbar.style.boxShadow = 'none';
-            }
-        });
-    </script>
+    <script src="js/products.js"></script>
+    <script src="js/home.js"></script>
 </body>
 </html>

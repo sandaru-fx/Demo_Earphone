@@ -7,7 +7,7 @@ const products = [
         category: "over-ear",
         rating: 4.9,
         reviews: 1240,
-        image: "images/skara_pro.png",
+        image: "images/skara_pro_max.png",
         description: "Studio-quality over-ear headphones with advanced hybrid active noise cancellation and 40-hour battery life.",
         features: ["Active Noise Cancelling", "40H Battery", "Hi-Res Audio", "Touch Controls"],
         colors: ["#121212", "#f0f0f0"]
@@ -20,7 +20,7 @@ const products = [
         category: "tws",
         rating: 4.8,
         reviews: 850,
-        image: "images/skara_buds.png",
+        image: "images/skara_buds_elite.png",
         description: "Premium true wireless earbuds delivering crystal clear highs and deep bass. Includes wireless charging case.",
         features: ["IPX4 Water Resistant", "24H Total Battery", "Bluetooth 5.3", "Voice Assistant"],
         colors: ["#121212"]
@@ -33,7 +33,7 @@ const products = [
         category: "sport",
         rating: 4.6,
         reviews: 420,
-        image: "images/hero_earphone.png",
+        image: "images/skara_sport_x.png",
         description: "Designed for the toughest workouts. Secure fit earhooks and IPX7 sweat resistance.",
         features: ["Secure Fit", "IPX7 Waterproof", "Bass Boost", "Quick Charge"],
         colors: ["#7b2ff7", "#121212"]
@@ -46,7 +46,7 @@ const products = [
         category: "neckband",
         rating: 4.5,
         reviews: 310,
-        image: "images/lifestyle_earphone.png",
+        image: "images/skara_flex.png",
         description: "Comfortable all-day wear with a flexible neckband and magnetic earbuds to prevent tangles.",
         features: ["Magnetic Earbuds", "18H Battery", "Lightweight Design", "Multi-point Connection"],
         colors: ["#121212", "#00d4ff"]
@@ -59,7 +59,7 @@ const products = [
         category: "over-ear",
         rating: 5.0,
         reviews: 890,
-        image: "images/skara_pro.png",
+        image: "images/skara_pro_studio.png",
         description: "Audiophile-grade open-back headphones engineered for critical listening and professional studio work.",
         features: ["Open-Back Design", "Planar Magnetic Drivers", "Premium Leather", "Detachable Cable"],
         colors: ["#121212"]
@@ -72,7 +72,7 @@ const products = [
         category: "tws",
         rating: 4.3,
         reviews: 210,
-        image: "images/skara_buds.png",
+        image: "images/skara_buds_lite.png",
         description: "Everyday true wireless earbuds that are compact, colorful, and pack a surprising punch.",
         features: ["Ultra-Compact", "15H Battery", "Touch Controls", "Lightweight"],
         colors: ["#f0f0f0", "#ff4d4d", "#121212"]
@@ -85,7 +85,7 @@ const products = [
         category: "sport",
         rating: 4.7,
         reviews: 530,
-        image: "images/hero_earphone.png",
+        image: "images/skara_sport_pro.png",
         description: "Elite sport earbuds with bone conduction technology so you can hear your surroundings while training.",
         features: ["Bone Conduction", "IPX8 Waterproof", "Secure Fit", "8H Continuous Play"],
         colors: ["#121212", "#00d4ff"]
@@ -98,7 +98,7 @@ const products = [
         category: "neckband",
         rating: 4.4,
         reviews: 180,
-        image: "images/lifestyle_earphone.png",
+        image: "images/skara_flex_max.png",
         description: "Upgraded neckband earphones with Active Noise Cancelling, perfect for long flights and commutes.",
         features: ["Active Noise Cancelling", "22H Battery", "Vibration Alerts", "Fast Charge"],
         colors: ["#121212"]
@@ -111,7 +111,7 @@ const products = [
         category: "over-ear",
         rating: 4.6,
         reviews: 670,
-        image: "images/skara_pro.png",
+        image: "images/skara_pro_lite.png",
         description: "The classic Skara sound in a lighter, more affordable over-ear package. Great for students.",
         features: ["Lightweight Build", "30H Battery", "Foldable Design", "Voice Assistant"],
         colors: ["#7b2ff7", "#f0f0f0"]
@@ -124,7 +124,7 @@ const products = [
         category: "tws",
         rating: 4.8,
         reviews: 1120,
-        image: "images/skara_buds.png",
+        image: "images/skara_buds_anc.png",
         description: "True wireless earbuds with adaptive noise cancellation that automatically adjusts to your environment.",
         features: ["Adaptive ANC", "Transparency Mode", "Wireless Charging", "Custom EQ"],
         colors: ["#121212", "#f0f0f0"]
@@ -137,7 +137,7 @@ const products = [
         category: "sport",
         rating: 4.5,
         reviews: 340,
-        image: "images/hero_earphone.png",
+        image: "images/skara_sport_flow.png",
         description: "Breathable, lightweight sport earbuds with an open-ear design for maximum comfort during long runs.",
         features: ["Open-Ear Comfort", "Sweatproof", "Reflective Cable", "10H Battery"],
         colors: ["#00d4ff", "#121212"]
@@ -150,7 +150,7 @@ const products = [
         category: "neckband",
         rating: 4.2,
         reviews: 150,
-        image: "images/lifestyle_earphone.png",
+        image: "images/skara_flex_lite.png",
         description: "Simple, reliable neckband earphones for casual everyday listening on a budget.",
         features: ["12H Battery", "Magnetic Clasp", "In-line Controls", "Bass Boost"],
         colors: ["#121212", "#ff4d4d"]
